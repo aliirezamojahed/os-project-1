@@ -15,6 +15,9 @@ do
 		"ssi" )  #system security info.
 		echo "system security information";
 		#TODO
+		#
+		#
+		#
 		;;
 		"shi" )  #system hardware info.
 		echo "system hardware information";
