@@ -11,6 +11,15 @@ do
 		"sgi" )  #system general information
 		echo "system general information";
 		#TODO
+		#complete cpu information
+		cci=$(lscpu)
+		#number of active processes 
+		nap=$(ps aux --no-headers | wc -l)
+		#15 first processes with highest memory usage
+		hmu=$(ps aux | sort -rnk 4 | head -15)
+		echo "$cci"
+		echo "$nap"
+		echo "$hmu"
 		;;
 		"ssi" )  #system security info.
 		echo "system security information";
