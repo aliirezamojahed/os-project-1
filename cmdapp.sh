@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# text colors
+RED='\033[1;31m'
+CYAN='\033[1;36m'
+NC='\033[0m' # No Color
+
 #command line application
 for i in $1 $2 $3  # loop over input parameters
 do
@@ -17,8 +22,18 @@ do
 		#TODO
 		;;
 		"shi" )  #system hardware info.
-		echo "system hardware information";
+		echo -e "${CYAN}System Hardware Information${NC}";
 		#TODO
+		# CPU hardware details
+		chd=$(lscpu)
+		# Memory hardware details
+		mhd=$(less /proc/meminfo)
+		# USB devices details
+		udd=$(usb-devices)
+
+		echo -e "${RED}CPU Hardware Details:${NC}\n$chd \n"
+		echo -e "${RED}Memory Hardware Details:${NC}\n$mhd \n"
+		echo -e "${RED}USB devices details:${NC}\n$udd \n"
 		;;
 		* )  #if param is not any of abow
 		echo "unknown parameter!";
