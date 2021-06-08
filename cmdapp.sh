@@ -11,15 +11,28 @@ do
 		"sgi" )  #system general information
 		echo "system general information";
 		#TODO
-		#complete cpu information
-		cci=$(lscpu)
+		#overall cpu information
+		oci=$(cat /proc/cpuinfo)
+		#name and version of os
+		nvos=$(cat /proc/cpuinfo)
+		#kernel specification	
+		kn=$(uname --kernel-name)
+		kr=$(uname --kernel-release)
+		kv=$(uname --kernel-version)
+		#os distro
+		osd=$(hostnamectl | grep 'Operation System' | cut -d ' ' -f 5-)
+		#desktop specification
+		ds=$()
 		#number of active processes 
 		nap=$(ps aux --no-headers | wc -l)
-		#15 first processes with highest memory usage
+		#15 top processes with highest memory usage
 		hmu=$(ps aux | sort -rnk 4 | head -15)
-		echo "$cci"
-		echo "$nap"
-		echo "$hmu"
+		echo "overall cpu information:\n$oci"
+		echo "name and version of operating system:\n$nvos" 
+		echo "kernel specification:\nname: $kn\nrelease: $kr\nversion: $kv"
+		echo "distro of operating system:\n$osd"
+		echo "number of active processes in this system:$nap"
+		echo "15 top processes with highers memory usage:\n$hmu"
 		;;
 		"ssi" )  #system security info.
 		echo "system security information";
