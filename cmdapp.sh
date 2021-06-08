@@ -27,12 +27,12 @@ do
 		nap=$(ps aux --no-headers | wc -l)
 		#15 top processes with highest memory usage
 		hmu=$(ps aux | sort -rnk 4 | head -15)
-		echo "overall cpu information:\n$oci"
-		echo "name and version of operating system:\n$nvos" 
-		echo "kernel specification:\nname: $kn\nrelease: $kr\nversion: $kv"
-		echo "distro of operating system:\n$osd"
-		echo "number of active processes in this system:$nap"
-		echo "15 top processes with highers memory usage:\n$hmu"
+		echo -e "overall cpu information:\n$oci"
+		echo -e "name and version of operating system:\n$nvos" 
+		echo -e "kernel specification:\nname: $kn\nrelease: $kr\nversion: $kv"
+		echo -e "distro of operating system:\n$osd"
+		echo -e "number of active processes in this system:$nap"
+		echo -e "15 top processes with highers memory usage:\n$hmu"
 		;;
 		"ssi" )  #system security info.
 		echo "system security information";
