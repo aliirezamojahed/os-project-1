@@ -30,10 +30,18 @@ do
 		mhd=$(less /proc/meminfo)
 		# USB devices details
 		udd=$(usb-devices)
-
+		#memory usage 
+		mu=$(free -h)
+		#cpu usage 
+		cu=$(ps --no-headers -eo pcpu | awk '{cpu += $1} END {print cpu}')
+		#disk usage 
+		dus=$(df -h /)
 		echo -e "${RED}CPU Hardware Details:${NC}\n$chd \n"
 		echo -e "${RED}Memory Hardware Details:${NC}\n$mhd \n"
 		echo -e "${RED}USB devices details:${NC}\n$udd \n"
+		echo -e "memory usage:\n$mu"
+		echo -e "cpu usage: $cu%"
+		echo -e "disk usage:\n$dus"
 		;;
 		* )  #if param is not any of abow
 		echo "unknown parameter!";
