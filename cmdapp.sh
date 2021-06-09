@@ -14,24 +14,25 @@ do
 		#overall cpu information
 		oci=$(cat /proc/cpuinfo)
 		#name and version of os
-		nvos=$(cat /proc/cpuinfo)
+		nvos=$(hostnamectl | grep "Operating System" | cut -d ':' -f 2)
 		#kernel specification	
 		kn=$(uname --kernel-name)
 		kr=$(uname --kernel-release)
 		kv=$(uname --kernel-version)
 		#os distro
-		osd=$(hostnamectl | grep 'Operation System' | cut -d ' ' -f 5-)
-		#desktop specification
-		ds=$()
+		osd=$(cat /etc/*-release | grep "DISTRIB_ID" | cut -d '=' -f 2)
+		#desktop environment 
+		de=$(echo $XDG_CURRENT_DESKTOP | cut -d ':' -f 2)
 		#number of active processes 
 		nap=$(ps aux --no-headers | wc -l)
 		#15 top processes with highest memory usage
 		hmu=$(ps aux | sort -rnk 4 | head -15)
 		echo -e "overall cpu information:\n$oci"
-		echo -e "name and version of operating system:\n$nvos" 
-		echo -e "kernel specification:\nname: $kn\nrelease: $kr\nversion: $kv"
-		echo -e "distro of operating system:\n$osd"
-		echo -e "number of active processes in this system:$nap"
+		echo -e "name and version of operating system:$nvos" 
+		echo -e "kernel specification\nname: $kn\nrelease: $kr\nversion: $kv"
+		echo -e "distro of operating system: $osd"
+		echo -e "desktop environment: $de"
+		echo -e "number of active processes in this system: $nap"
 		echo -e "15 top processes with highers memory usage:\n$hmu"
 		;;
 		"ssi" )  #system security info.
