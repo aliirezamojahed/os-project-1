@@ -34,7 +34,6 @@ do
 		cu=$(ps --no-headers -eo pcpu | awk '{cpu += $1} END {print cpu}')
 		#memory usage 
 		mu=$(ps --no-headers -eo pmem | awk '{mem += $1} END {print mem}')
-		
 		#disk usage 
 		dus=$(df -h --output=pcent / | tail -n 1)
 		echo -e "${RED}CPU Hardware Details:${NC}\n$chd \n"
