@@ -37,6 +37,24 @@ do
 		"shi" )  #system hardware info.
 		echo -e "${CYAN}System Hardware Information${NC}";
 		#TODO
+		# CPU hardware details
+		chd=$(lscpu)
+		# Memory hardware details
+		mhd=$(less /proc/meminfo)
+		# USB devices details
+		udd=$(usb-devices)
+		#cpu usage 
+		cu=$(ps --no-headers -eo pcpu | awk '{cpu += $1} END {print cpu}')
+		#memory usage 
+		mu=$(ps --no-headers -eo pmem | awk '{mem += $1} END {print mem}')
+		#disk usage 
+		dus=$(df -h --output=pcent / | tail -n 1)
+		echo -e "${RED}CPU Hardware Details:${NC}\n$chd \n"
+		echo -e "${RED}Memory Hardware Details:${NC}\n$mhd \n"
+		echo -e "${RED}USB devices details:${NC}\n$udd \n"
+		echo -e "${RED}cpu usage: ${NC}$cu%"
+		echo -e "${RED}memory usage: ${NC}$mu%"
+		echo -e "${RED}disk usage:${NC}$dus"
 		;;
 		* )  #if param is not any of abow
 		echo -e "${CYAN}unknown parameter!${NC}";
