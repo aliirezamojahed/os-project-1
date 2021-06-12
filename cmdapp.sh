@@ -39,7 +39,7 @@ do
 			hmu=$(ps auxc | sort -rnk 4 | head -15)
 			echo -e "${RED}Overall CPU Information:\n${NC}$oci"
 			echo -e "${RED}Name and Version of Operating System:${NC}$nvos" 
-			echo -e "${RED}Kernel Specification\n\tname: ${NC}$kn\n\t${RED}Release: ${NC}$kr\n\t${RED}Version: ${NC}$kv"
+			echo -e "${RED}Kernel Specification\n\tName: ${NC}$kn\n\t${RED}Release: ${NC}$kr\n\t${RED}Version: ${NC}$kv"
 			echo -e "${RED}Distro of Operating System: ${NC}$osd"
 			echo -e "${RED}Desktop Environment: ${NC}$de"
 			if [ $gn -eq 1 ]
@@ -47,7 +47,8 @@ do
 				echo -e "\t${RED}Gnome Version: ${NC}$gv" 
 			fi
 			echo -e "${RED}Number of Active Processes: ${NC}$nap"
-			echo -e "${RED}15 Top processes with highers memory usage:${NC}\n$headers\n$hmu"
+			echo -e "${RED}15 Top Processes With Highest Memory Usage:${NC}\n$headers\n$hmu\n"
+			echo -e "${RED}\t\t************************************************${NC}"
 			;;
 	
 			"ssi" )  # System Security Information
@@ -64,6 +65,7 @@ do
 			echo -e "${RED}Active System Services:${NC}\n$ass\n"
 			echo -e "${RED}Installed Applications:${NC}\n$ip\n"
 			echo -e "${RED}Last System Upgrade:${NC}\n$lsu\n"
+			echo -e "${RED}\t\t************************************************${NC}"
 			;;
 	
 			"shi" )  # System Hardware Info.
