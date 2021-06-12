@@ -25,14 +25,14 @@ do
 		# active system services
 		ass=$(systemctl --type=service --state=active | more) 
 		# installed applications
-		ip=$(for app in /usr/share/applications/*.desktop ~/.local/share/applications/*.desktop; do app="${app##/*/}"; echo "${app::-8}"; done) 
+		ip=$(for app in /usr/share/applications/*.desktop ~/.local/share/applications/*.desktop; do app="${app##*/}"; echo "${app::-8}"; done) 
 		# last system upgrade
 		lsu=$(grep "upgrade " /var/log/dpkg.log | tail -1) 
 
-		echo -e "${RED}Looged In Users:${NC}\n$liu \n"
-		echo -e "${RED}Active System Services:${NC}\n$ass \n"
-		echo -e "${RED}Installed Applications:${NC}\n$ip \n"
-		echo -e "${RED}Last System Upgrade:${NC}\n$lsu \n"
+		echo -e "${RED}Looged In Users:${NC}\n$liu\n"
+		echo -e "${RED}Active System Services:${NC}\n$ass\n"
+		echo -e "${RED}Installed Applications:${NC}\n$ip\n"
+		echo -e "${RED}Last System Upgrade:${NC}\n$lsu\n"
 		;;
 		"shi" )  #system hardware info.
 		echo -e "${CYAN}System Hardware Information${NC}";
