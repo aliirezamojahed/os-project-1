@@ -93,7 +93,7 @@ for i in $1 $2 $3; do  # Loop over input parameters
 
       echo -e "${RED}CPU Hardware Details:${NC}\n$chd\n"
       echo -e "${RED}Memory Hardware Details:${NC}\n$mhd\n"
-      echo -e "${RED}USB Devices Details:${NC}\n$udd\n"
+      echo -e "${RED}USB Devices Details:${NC}$udd\n"
       echo -e "${RED}Resources Usage${NC}"
       echo -e "${RED}\tCPU Usage: ${NC}$cu%"
       echo -e "${RED}\tMemory Usage: ${NC}$mu%"
