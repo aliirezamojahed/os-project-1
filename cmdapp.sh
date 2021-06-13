@@ -7,7 +7,7 @@ NC='\033[0m' # No color
 
 # Command line application
 for i in $1 $2 $3; do  # Loop over input parameters
-	if  [ -n $i ]; then  # if the input param is not null, then process it 
+	if  [ -n $i ]; then  # If the input param is not null, then process it 
 		if [ "$i" != "$1" ]; then
 			echo -e "${RED}\t\t************************************************${NC}"
 		fi
@@ -18,13 +18,13 @@ for i in $1 $2 $3; do  # Loop over input parameters
 			oci=$(cat /proc/cpuinfo | head -n 9 | tail -n 8)
 			# Name and version of os
 			nvos=$(hostnamectl | grep "Operating System" | cut -d ':' -f 2)
-			# Kernel specification	
+			# Kernel Specification	
 			kn=$(uname --kernel-name)
 			kr=$(uname --kernel-release)
 			kv=$(uname --kernel-version)
-			# OS distro
+			# OS Distro
 			osd=$(cat /etc/*-release | grep "DISTRIB_ID" | cut -d '=' -f 2)
-			# Desktop environment 
+			# Desktop Environment 
 			de=$(echo $XDG_CURRENT_DESKTOP | cut -d ':' -f 2)
 			if [ "$de" = "GNOME" ]; then
 				gn=1
@@ -50,11 +50,9 @@ for i in $1 $2 $3; do  # Loop over input parameters
 				echo -e "\t${RED}Gnome Version: ${NC}$gv" 
 			fi
 			echo -e "${RED}Number of Active Processes: ${NC}$nap"
-			echo -e "${RED}15 Top Processes With Highest Memory Usage:${NC}\n$headers\n$hmu\n"
+			echo -e "${RED}15 Top Processes with Highest Memory Usage:${NC}\n$headers\n$hmu\n"
 			;;
-	
-###############################################################################
-
+################################################################################
 			"ssi" )  # System Security Information
 			echo -e "\n${CYAN}System Security Information${NC}\n";
 			# Logged In Users
@@ -76,10 +74,8 @@ for i in $1 $2 $3; do  # Loop over input parameters
 			echo -e "${RED}Installed Applications:${NC}\n$ia\n"
 			echo -e "${RED}Last System Upgrade:${NC}\n$lsu\n"
 			;;
-
-###############################################################################
-
-			"shi" )  # System Hardware Info.
+################################################################################
+			"shi" )  # System Hardware Information
 			echo -e "\n${CYAN}System Hardware Information${NC}\n";
 			# CPU Hardware Details
 			chd=$(lscpu)
@@ -92,7 +88,7 @@ for i in $1 $2 $3; do  # Loop over input parameters
 			# Memory Usage 
 			mu=$(ps --no-headers -eo pmem | awk '{mem += $1} END {print mem}')
 			# Disk Usage 
-			dus=$(df -h --output=pcent / | tail -n 1)
+			dus=$(df --output=pcent / | tail -n 1)
 
 			echo -e "${RED}CPU Hardware Details:${NC}\n$chd\n"
 			echo -e "${RED}Memory Hardware Details:${NC}\n$mhd\n"
@@ -102,8 +98,8 @@ for i in $1 $2 $3; do  # Loop over input parameters
 			echo -e "${RED}\tMemory Usage: ${NC}$mu%"
 			echo -e "${RED}\tDisk Usage:${NC}$dus\n"
 			;;
-	
-			* )  # if param is not any of abow
+################################################################################
+			* )  # If the param is not any of abow
 			echo -e "${CYAN}Unknown Parameter!${NC}";
 			;;	
 		esac
