@@ -60,9 +60,9 @@ for i in $1 $2 $3; do  # Loop over input parameters
 			# Active System Services
 			ass=$(systemctl --type=service --state=active) 
 			# Installed Applications
-			file1=/usr/share/applications/*.desktop
-			file2=~/.local/share/applications/*.desktop
-			ia=$(for app in $file1 $file2; do 
+			files1=/usr/share/applications/*.desktop
+			files2=~/.local/share/applications/*.desktop
+			ia=$(for app in $files1 $files2; do
 	       			app="${app##*/}"; 
 				echo "${app::-8}";
 		       	     done) 
