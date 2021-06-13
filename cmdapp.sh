@@ -17,8 +17,7 @@ for i in $1 $2 $3; do  # Loop over input parameters
 			# Overall CPU Information
 			oci=$(cat /proc/cpuinfo | head -n 9 | tail -n 8)
 			# Name and version of os
-			nvos=$(hostnamectl | grep "Operating System" | cut -d
-			       	':' -f 2)
+			nvos=$(hostnamectl | grep "Operating System" | cut -d ':' -f 2)
 			# Kernel specification	
 			kn=$(uname --kernel-name)
 			kr=$(uname --kernel-release)
@@ -41,7 +40,10 @@ for i in $1 $2 $3; do  # Loop over input parameters
 
 			echo -e "${RED}Overall CPU Information:\n${NC}$oci"
 			echo -e "${RED}Name and Version of Operating System: ${NC}$nvos" 
-			echo -e "${RED}Kernel Specification\n\tName: ${NC}$kn\n\t${RED}Release: ${NC}$kr\n\t${RED}Version: ${NC}$kv"
+			echo -e "${RED}Kernel Specification"
+			echo -e "\t${RED}Name: ${NC}$kn"
+			echo -e "\t${RED}Release: ${NC}$kr"
+			echo -e "\t${RED}Version: ${NC}$kv"
 			echo -e "${RED}Distro of Operating System: ${NC}$osd"
 			echo -e "${RED}Desktop Environment: ${NC}$de"
 			if [ $gn -eq 1 ]; then
@@ -60,13 +62,18 @@ for i in $1 $2 $3; do  # Loop over input parameters
 			# Active System Services
 			ass=$(systemctl --type=service --state=active) 
 			# Installed Applications
-			ip=$(for app in /usr/share/applications/*.desktop ~/.local/share/applications/*.desktop; do app="${app##*/}"; echo "${app::-8}"; done) 
+			file1=/usr/share/applications/*.desktop
+			file2=~/.local/share/applications/*.desktop
+			ia=$(for app in $file1 $file2; do 
+	       			app="${app##*/}"; 
+				echo "${app::-8}";
+		       	     done) 
 			# Last System Upgrade
 			lsu=$(grep "upgrade " /var/log/dpkg.log | tail -1) 
 
 			echo -e "${RED}Looged In Users:${NC}\n$liu\n"
 			echo -e "${RED}Active System Services:${NC}\n$ass\n"
-			echo -e "${RED}Installed Applications:${NC}\n$ip\n"
+			echo -e "${RED}Installed Applications:${NC}\n$ia\n"
 			echo -e "${RED}Last System Upgrade:${NC}\n$lsu\n"
 			;;
 
